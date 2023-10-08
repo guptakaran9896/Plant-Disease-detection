@@ -21,7 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODEL  = tf.keras.models.load_model("../saved_models/3")
+MODEL  = tf.keras.models.load_model("../saved_models/5")
 CLASS_NAMES = ['Pepper__bell___Bacterial_spot',
  'Pepper__bell___healthy',
  'Potato___Early_blight',
@@ -53,7 +53,7 @@ async def predict(
     image = read_file_as_image(await file.read())
     img_batch = np.expand_dims(image,0)
     prediction = MODEL.predict(img_batch)
-    print(np.argmax(prediction[0]))
+    print("==================",np.argmax(prediction[0]))
     predicted_class = CLASS_NAMES[np.argmax(prediction[0])]
     confidence = np.max(prediction[0])
     return{
